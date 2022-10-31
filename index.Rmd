@@ -1,0 +1,12 @@
+---
+title: "Introduction"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cerulean
+---
+
+## About Me
+
+Hi, my name is Hemangi Modi. I was born and raised in Tanzania but have been living in the United States for the past 10 years. I currently live in New York City and I am a graduate student at Columbia University pursuing a Master's in Public Health. I enjoy hiking, rock climbing, playing board games, biking around the city, and trying new vegetarian food options!
