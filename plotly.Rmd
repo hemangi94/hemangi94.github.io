@@ -11,10 +11,61 @@ output:
 ```{r}
 library(tidyverse)
 library(p8105.datasets)
-
+library(readxl)
 library(plotly)
 ```
 
 ## Let's get the data
 
+
+```{r}
+data("rest_inspec")
+
+rest_inspec = 
+  rest_inspec %>% 
+  mutate(
+    inspection_date = as.Date(inspection_date)
+  ) %>% 
+  separate(inspection_date, into = c("year", "month", "day"), sep = "-") %>%
+  select(dba, boro, zipcode, cuisine_description, year, critical_flag, score, grade) %>% 
+  filter(
+    boro != "Missing"
+  ) %>% 
+  sample_n(10000) 
+```
+
+## Make plots
+
+```{r}
+rest_inspec %>% 
+  plot_ly(
+    y = ~score, color = ~boro,
+    type = "box", colors = "viridis"
+  ) %>% 
+  layout(title = "Inspection scores for restaurants in the five boroughs of NYC")
+```
+
+```{r}
+rest_inspec %>% 
+  filter(
+    critical_flag == "Critical"
+  ) %>% 
+  count(boro) %>% 
+  plot_ly(
+    x = ~boro, y = ~n,
+    type = "bar"
+  ) %>% 
+  layout(title = "Number of critical violations across restuarants in each borough", xaxis = list(title = "borough"), 
+         yaxis = list(title = "# of critical violations"))
+```
+
+
+```{r}
+rest_inspec %>% 
+  plot_ly(
+    x = ~score, type = "histogram", color = "orange"
+  ) %>%
+  layout(title = "Frequency distribution of inspection scores across all restuarnts in NYC ", xaxis = list(title = "Score"), 
+         yaxis = list(title = "Frequency"))
+```
 
