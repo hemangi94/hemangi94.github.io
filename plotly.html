@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Plotly</title>
+
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="professional-experience.html">Professional Experience</a>
+</li>
+<li>
+  <a href="dashboard.html">Dashboard</a>
+</li>
+<li>
+  <a href="mailto:hbm2126@cumc.columbia.edu">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/hemangi94/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.linkedin.com/in/hemangi-modi-27075ab3">
+    <span class="fa fa-brands fa-linkedin"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Plotly</h1>
+
+</div>
+
+
+<div id="load-packages-and-data" class="section level2">
+<h2>Load packages and data</h2>
+<pre class="r"><code>library(tidyverse)
+library(p8105.datasets)
+library(readxl)
+library(plotly)</code></pre>
+</div>
+<div id="lets-get-the-data" class="section level2">
+<h2>Let’s get the data</h2>
+<pre class="r"><code>data(&quot;rest_inspec&quot;)
+
+rest_inspec = 
+  rest_inspec %&gt;% 
+  mutate(
+    inspection_date = as.Date(inspection_date)
+  ) %&gt;% 
+  separate(inspection_date, into = c(&quot;year&quot;, &quot;month&quot;, &quot;day&quot;), sep = &quot;-&quot;) %&gt;%
+  select(dba, boro, zipcode, cuisine_description, year, critical_flag, score, grade) %&gt;% 
+  filter(
+    boro != &quot;Missing&quot;
+  ) %&gt;% 
+  sample_n(1000) </code></pre>
+</div>
+<div id="make-plots" class="section level2">
+<h2>Make plots</h2>
+<pre class="r"><code>rest_inspec %&gt;% 
+  plot_ly(
+    y = ~score, color = ~boro,
+    type = &quot;box&quot;, colors = &quot;viridis&quot;
+  ) %&gt;% 
+  layout(title = &quot;Inspection scores for restaurants in the five boroughs of NYC&quot;)</code></pre>
+<pre><code>## Warning: Ignoring 74 observations</code></pre>
+<div id="htmlwidget-eed66cb282e6b3269b98" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-eed66cb282e6b3269b98">{"x":{"visdat":{"48f46f935c4b":["function () ","plotlyVisDat"]},"cur_data":"48f46f935c4b","attrs":{"48f46f935c4b":{"y":{},"color":{},"colors":"viridis","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"box"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Inspection scores for restaurants in the five boroughs of NYC","yaxis":{"domain":[0,1],"automargin":true,"title":"score"},"xaxis":{"domain":[0,1],"automargin":true},"hovermode":"closest","showlegend":true},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"fillcolor":"rgba(68,1,84,0.5)","y":[10,21,28,11,22,10,25,12,13,11,41,7,8,25,16,28,27,21,23,22,22,12,36,66,13,13,13,19,33,12,22,54,13,26,4,21,33,7,11,21,31,9,25,19,27,12,36,11,41,9,12,7,18,23,28,27,35,19,5,44,33,5,5,23,7,26,10,60,27,19,19,12,13,16,27,15,16,23,18,47,11,12,7,10],"type":"box","name":"BRONX","marker":{"color":"rgba(68,1,84,1)","line":{"color":"rgba(68,1,84,1)"}},"line":{"color":"rgba(68,1,84,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(59,82,139,0.5)","y":[41,10,46,10,27,22,24,12,11,7,8,15,13,24,62,18,12,2,13,13,14,13,12,11,11,83,12,25,22,13,29,19,28,5,4,10,16,15,35,19,17,12,22,2,18,22,13,11,9,13,13,33,11,32,47,10,17,35,18,5,19,20,36,15,20,10,22,15,11,17,17,13,8,37,13,0,10,27,9,9,41,27,21,6,8,10,12,7,9,15,10,25,18,45,2,10,16,21,27,21,13,19,8,29,12,12,18,37,7,3,8,19,13,10,16,27,8,7,29,45,15,18,9,46,24,22,7,6,12,13,8,18,2,4,12,14,35,10,18,22,23,36,7,11,10,20,0,32,8,13,13,9,18,77,22,12,17,27,18,7,19,24,31,9,35,17,56,13,13,13,13,13,38,19,8,13,19,10,9,12,13,24,12,18,48,23,4,33,20,10,31,28,27,13,29,2,11,18,24,23,12,10,20,11,30,11,6,40,20,24,30,11,41,20,10,27,14,46,27,12,31,10,21,7,33,18,20,9],"type":"box","name":"BROOKLYN","marker":{"color":"rgba(59,82,139,1)","line":{"color":"rgba(59,82,139,1)"}},"line":{"color":"rgba(59,82,139,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(33,144,141,0.5)","y":[13,24,12,10,13,17,9,9,3,34,8,12,27,15,18,19,10,11,17,21,12,11,13,15,37,16,20,34,28,12,16,12,18,12,4,13,20,11,12,13,10,13,16,10,30,7,18,23,56,17,10,10,13,11,15,7,19,44,13,37,17,10,31,16,10,21,23,30,21,13,14,12,10,16,7,29,49,12,8,13,5,23,8,46,8,13,29,26,13,9,15,18,11,21,7,25,7,38,38,23,18,22,20,17,12,7,30,24,11,12,13,21,13,3,32,22,17,22,24,18,7,42,9,8,8,24,10,18,28,36,27,27,14,24,7,33,27,11,54,12,10,6,12,9,24,11,27,9,10,12,23,13,15,21,10,10,6,11,38,15,7,9,32,10,12,13,9,12,15,49,10,13,32,13,21,42,32,7,29,23,7,65,2,10,2,33,16,9,7,10,33,50,11,16,44,31,24,51,38,18,17,2,2,25,21,24,13,27,11,10,41,13,24,11,13,24,26,26,13,13,26,20,23,12,10,12,6,56,13,12,25,47,10,13,37,50,24,13,50,22,9,37,61,52,3,15,13,41,21,8,23,13,10,25,38,18,13,2,5,18,13,15,25,17,9,9,11,12,0,44,30,34,13,12,39,10,13,17,35,23,23,12,37,11,29,23,3,81,30,14,29,21,18,0,24,28,21,19,36,12,12,49,18,2,25,21,50,11,2,10,21,12,12,29,13,16,21,15,22,13,12,4,23,14,7,20,29,53,9,63,10,11,2,5,40,12,45,19,34,21,51,44,17,3,11,11,13,12,21,7,13,13,10,12,31,41,8,27,55,21,19,11,12,41,38,34,27,13,26,46,12,50,5,18,13,13,17,7,13,10,19,33,10,13],"type":"box","name":"MANHATTAN","marker":{"color":"rgba(33,144,141,1)","line":{"color":"rgba(33,144,141,1)"}},"line":{"color":"rgba(33,144,141,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(93,200,99,0.5)","y":[7,38,13,2,25,10,12,17,10,24,7,30,32,10,50,22,11,11,5,12,25,13,13,13,36,11,12,9,10,4,21,10,21,10,13,12,15,43,7,2,7,45,12,45,37,24,14,12,9,12,15,9,34,18,21,12,49,39,22,19,12,10,11,24,18,7,8,38,12,13,9,13,24,21,18,17,46,13,21,12,5,10,4,23,19,12,23,7,32,34,7,26,10,32,17,34,9,22,30,27,12,17,13,10,22,28,22,19,4,31,29,12,13,13,28,12,13,9,13,20,2,34,32,10,29,9,23,23,20,26,12,12,5,4,10,12,17,12,11,25,2,49,29,12,7,17,6,25,12,20,24,11,4,5,7,19,64,8,4,24,19,12,102,23,11,32,9,13,12,29,30,30,12,0,27,33,0,23,21,8,38,22,29,13,25,90,18,18,42,8,12,11,5,9,14,15,7,3,48,13,12,18,32,28,11],"type":"box","name":"QUEENS","marker":{"color":"rgba(93,200,99,1)","line":{"color":"rgba(93,200,99,1)"}},"line":{"color":"rgba(93,200,99,1)"},"xaxis":"x","yaxis":"y","frame":null},{"fillcolor":"rgba(253,231,37,0.5)","y":[33,12,8,21,9,29,23,20,12,6,29,24,17,7,6,7,35,11,9,4,33,36,12,25,7],"type":"box","name":"STATEN ISLAND","marker":{"color":"rgba(253,231,37,1)","line":{"color":"rgba(253,231,37,1)"}},"line":{"color":"rgba(253,231,37,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>rest_inspec %&gt;% 
+  filter(
+    critical_flag == &quot;Critical&quot;
+  ) %&gt;% 
+  count(boro) %&gt;% 
+  plot_ly(
+    x = ~boro, y = ~n,
+    type = &quot;bar&quot;
+  ) %&gt;% 
+  layout(title = &quot;Number of critical violations across restuarants in each borough&quot;, xaxis = list(title = &quot;borough&quot;), 
+         yaxis = list(title = &quot;# of critical violations&quot;))</code></pre>
+<div id="htmlwidget-6906a0ff0f4f356cbe62" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6906a0ff0f4f356cbe62">{"x":{"visdat":{"48f45490658":["function () ","plotlyVisDat"]},"cur_data":"48f45490658","attrs":{"48f45490658":{"x":{},"y":{},"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"bar"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Number of critical violations across restuarants in each borough","xaxis":{"domain":[0,1],"automargin":true,"title":"borough","type":"category","categoryorder":"array","categoryarray":["BRONX","BROOKLYN","MANHATTAN","QUEENS","STATEN ISLAND"]},"yaxis":{"domain":[0,1],"automargin":true,"title":"# of critical violations"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":["BRONX","BROOKLYN","MANHATTAN","QUEENS","STATEN ISLAND"],"y":[48,134,224,119,15],"type":"bar","marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>rest_inspec %&gt;% 
+  plot_ly(
+    x = ~score, type = &quot;histogram&quot;, color = &quot;orange&quot;
+  ) %&gt;%
+  layout(title = &quot;Frequency distribution of inspection scores across all restuarnts in NYC &quot;, xaxis = list(title = &quot;Score&quot;), 
+         yaxis = list(title = &quot;Frequency&quot;))</code></pre>
+<pre><code>## Warning: Ignoring 74 observations</code></pre>
+<pre><code>## Warning in RColorBrewer::brewer.pal(N, &quot;Set2&quot;): minimal value for n is 3, returning requested palette with 3 different levels
+
+## Warning in RColorBrewer::brewer.pal(N, &quot;Set2&quot;): minimal value for n is 3, returning requested palette with 3 different levels</code></pre>
+<div id="htmlwidget-20be1ea2c0e4860b1e41" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-20be1ea2c0e4860b1e41">{"x":{"visdat":{"48f422263ae6":["function () ","plotlyVisDat"]},"cur_data":"48f422263ae6","attrs":{"48f422263ae6":{"x":{},"color":"orange","alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"type":"histogram"}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"title":"Frequency distribution of inspection scores across all restuarnts in NYC ","xaxis":{"domain":[0,1],"automargin":true,"title":"Score"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Frequency"},"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"data":[{"x":[13,7,38,24,13,2,12,41,10,10,13,17,9,46,25,10,27,10,9,22,10,24,12,3,34,8,12,27,15,18,19,10,11,17,21,17,12,11,12,21,13,15,37,11,7,28,16,10,8,20,34,15,28,12,24,16,13,7,30,24,12,18,12,4,13,20,32,10,62,18,11,12,12,13,11,10,13,33,16,50,10,30,2,7,13,22,11,13,12,11,8,5,12,14,18,23,56,22,17,13,25,13,10,13,10,10,12,13,11,15,11,21,7,19,13,44,36,25,12,11,11,12,9,13,37,10,83,17,12,10,4,25,31,16,10,21,22,13,23,21,10,21,29,30,10,21,13,13,14,12,19,12,10,28,13,5,15,11,16,4,10,7,41,16,29,43,49,15,9,7,2,12,8,7,35,13,5,23,8,46,19,17,45,12,45,8,13,7,8,12,29,22,2,18,26,25,13,22,13,11,9,15,18,37,11,16,21,24,7,25,28,7,38,38,23,9,14,18,13,27,12,9,13,12,22,15,33,20,11,17,32,12,47,10,7,9,30,34,18,24,11,17,12,35,21,18,5,13,21,13,21,3,32,19,22,20,23,22,17,22,36,24,15,12,20,18,7,22,42,10,9,22,15,49,8,39,11,17,22,8,17,12,19,36,24,29,12,10,18,66,10,28,36,13,11,13,8,24,27,23,37,27,14,13,0,10,13,27,13,18,24,9,7,19,9,8,38,12,7,13,9,33,33,27,11,54,41,12,10,13,6,20,12,24,27,9,12,24,21,11,27,9,10,12,23,13,21,22,15,21,10,54,10,13,6,11,6,18,38,15,26,7,8,10,17,12,46,13,21,7,9,9,32,15,10,10,12,5,25,12,12,4,10,18,45,13,4,2,6,23,19,12,10,16,9,12,15,23,21,49,10,21,13,32,27,21,7,13,13,21,42,32,32,34,19,7,29,8,7,26,23,29,12,7,10,65,12,2,10,18,2,33,16,33,7,32,9,29,7,17,10,37,11,33,34,7,3,9,50,11,21,8,31,19,16,9,13,24,10,16,22,27,44,31,24,51,38,8,7,18,30,17,2,25,2,25,29,21,45,15,24,13,27,18,11,27,12,9,46,24,17,22,10,41,13,7,13,6,10,12,24,22,28,13,11,13,24,26,17,8,26,18,13,2,22,13,4,26,12,19,14,35,7,4,31,20,6,23,29,12,10,10,12,6,56,13,12,12,18,22,19,25,47,23,27,36,7,10,7,11,10,13,13,37,13,50,35,24,12,13,50,20,28,0,32,22,12,13,9,8,36,9,37,13,61,52,3,13,11,15,13,20,13,2,41,9,21,18,34,8,23,13,32,10,77,25,38,22,18,12,13,17,2,10,27,29,9,23,23,41,5,18,11,20,13,18,15,26,25,17,9,9,11,12,12,0,44,12,9,5,7,4,10,19,12,24,30,17,34,31,12,9,12,35,17,13,12,39,10,56,13,13,13,13,11,17,7,25,13,35,23,2,49,23,29,12,37,11,18,29,12,13,23,3,7,81,30,17,9,38,23,6,14,28,19,29,21,18,8,0,24,28,21,19,36,25,12,12,12,13,20,24,27,49,11,18,2,25,19,10,21,50,9,12,11,4,35,13,2,10,24,12,21,18,5,12,12,7,19,29,64,48,13,16,21,15,22,13,23,12,8,4,19,33,5,4,23,4,14,44,7,20,20,29,53,9,63,24,33,10,5,19,12,10,11,2,31,102,5,5,23,11,32,40,28,12,9,45,19,27,34,13,29,4,21,2,51,44,17,13,3,23,11,11,13,33,12,21,12,7,11,29,7,26,10,30,13,60,27,18,30,24,23,19,12,12,19,13,10,10,20,0,12,31,27,11,12,33,30,41,8,0,11,27,55,6,40,21,20,23,21,13,8,24,36,30,19,11,38,22,29,13,25,16,12,90,27,11,41,20,18,18,42,8,15,10,41,27,12,14,46,11,16,38,23,34,27,27,5,13,18,26,12,46,12,50,5,18,13,9,13,12,31,10,17,14,7,47,21,7,13,33,18,11,15,7,10,25,12,3,19,48,33,7,10,13,20,9,12,7,10,18,32,28,13,11],"type":"histogram","name":"orange","marker":{"color":"rgba(252,141,98,1)","line":{"color":"rgba(252,141,98,1)"}},"error_y":{"color":"rgba(252,141,98,1)"},"error_x":{"color":"rgba(252,141,98,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+---
+title: 
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+## Professional Goals
+
+Through personal, academic, and professional experiences, I have come to understand how larger system-wide barriers to affordable and equal access to care have significant impacts on individual health outcomes. I am passionate about improving the fragmented healthcare infrastructure that often disproportionately affects those most in need. 
+
+As I approach the end of my program, I am eager to apply my skills and experiences to addressing issues of equity and access across the healthcare industry. Moreover, I am excited to expand my skill set and learn from and work with the growing community of public health professionals.  
+
+
+## Education
+
+**Columbia University, Mailman School of Public Health** (Expected Graduation: May 2023)  
+Master of Public Health Candidate 
+
+**Cornell University** (Graduated May 2017)  
+Bachelor of Arts in Economics 
+
+## Professional Experience
+
+**Columbia University Mailman School of Public Health** (Aug 2022 - Present)  
+*Graduate Teaching Assistant for Public Health Interventions Course*
+
+* Attend lectures to provide tech and admin support to Professors
+* Hold weekly office hours for students to ask any questions about coursework
+* Grade homework and exams for about 40 students
+* Attend weekly meetings with other TAs and professors to discuss lecture material and student concerns
+
+
+**Association of American Medical Colleges (AAMC) - Research and Action Institute** (June 2022 - Aug 2022)  
+*Graduate Research Analyst*
+
+* Conducted a thorough literature review on the main barriers to accessing mental health care in the United States
+* Presented findings to the team and drafted a brief discussing these barriers and potential solutions
+* Co-wrote the final version with the Senior Data Analyst and the Executive Director. The publication can be found [here](https://www.aamc.org/advocacy-policy/aamc-research-and-action-institute/barriers-mental-health-care)
+* Assisted with preliminary research for a health impact assessment (HIA) focusing on paid family leave and its impact on maternal mental health and overall well-being on birthing people
+* Shadowed my supervisor (Senior Data Analyst) as she worked on cleaning and analyzing survey data from various different national surveys
+
+
+**Truveris, Inc** (May 2019 - July 2021)  
+*Data Analyst*
+
+* Managed reporting and risks associated with deliverables for a portfolio of 50 clients ranging from private
+companies, non-profits, NGOs, and state departments
+* Cleaned and analyzed prescription claims data (varying from 1000 to over 500,000 rows) using Excel and SQL
+* Identified patterns and discrepancies in drug pricing to flag potential fraudulent pharmacy data
+* Worked with Pharmacy Benefit Managers (PBMs) on clients’ behalf to resolve variances and disputes over
+contractual terms
+* Performed various ad hoc analyses such as year to year savings, rebate projections, and claims analysis for
+drug utilization management recommendations
+* Presented findings from Tableau to external and internal stakeholders
+* Trained and mentored new analysts on the team and conducted demonstrations of the proprietary software for 
+cross-functional teams
+
+**Collective Health** (July 2017 - Sep 2018)  
+*Operations Associate*
+
+* Managed health plan operations for 6 clients involving reporting, claims processing, resolving operational
+issues, investigating patient inquiries, and conducting research on appeals
+* Built and fostered a partnership with a vendor to identify gaps in transfer of case information
+* Improved the ‘code checker’ tool in G-sheets to help query a large database using multiple inputs
+* Analyzed data on patient inquiries using JIRA and Tableau to help management build staffing models
+
+## Volunteer Experience
+
+**Hunger Free America** (Oct 2019 - Feb 2020)  
+*Research Volunteer*
+
+* The policy project team sought to review the application processes and requirements of 67 social service/anti-poverty programs in New York City to examine opportunities and barriers to applying for benefits in a unified manner. I helped with conducting research for 10 such programs through primary and secondary data sources. The findings were compiled in a report providing recommendations to the New York City Mayor’s office to integrate the various public benefits programs
+
+
+**Harvard Bridge Program** (Mar 2019 - May 2019)  
+*Tutor*
+
+* The Bridge Program is an adult education and training program at Harvard University that provides employees with the skills and confidence to excel in their careers. I worked with a front-desk employee who was interested in improving her computer skills (Microsoft Office Suite, Outlook, organizing files, keyboard shortcuts, etc.)
+
+
+**PREPARE** (Aug 2014)  
+*Mentor*
+
+* Helped international students settle in at Cornell; facilitated events and assisted with navigating campus life
+
+
+**Tanzania Student Achievement Organization (TanSAO)** (June 2014 - Aug 2014)  
+*Tutor*
+
+* Tutored high school juniors in the ACT Math and Science sections
+
+
+## Skills and Projects
+
+**Languages:** Fluent Gujarati and Hindi; basic proficiency in Swahili and French  
+**Computer:** Excel, Stata, SQL, R, Tableau and basic Python  
+**Additional:** HIPAA, Medical and Pharmacy Claims Terminology and Codes, Policy Memos, JIRA, Salesforce  
+**Projects:** For a data science course in R, we learned how to make interactive dashboards. [Here](dashboard.html) is a link to a dashboard I created with 3 interactive plots using NYC restaurant inspection data. 
+
+
+
+
+
