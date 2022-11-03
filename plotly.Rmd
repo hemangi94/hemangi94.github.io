@@ -31,7 +31,7 @@ rest_inspec =
   filter(
     boro != "Missing"
   ) %>% 
-  sample_n(10000) 
+  sample_n(1000) 
 ```
 
 ## Make plots
