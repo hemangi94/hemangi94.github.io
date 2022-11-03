@@ -11,6 +11,10 @@ navbar:
       href: mailto:hbm2126@cumc.columbia.edu
     - icon: fa-github fa-lg
       href: http://github.com/hemangi94/
+    - icon: fa-brands fa-linkedin
+      href: https://www.linkedin.com/in/hemangi-modi-27075ab3
 output:
   html_document:
     theme: cosmo
+    
+    
